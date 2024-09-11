@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% block title %} Playlist {% endblock title %}
+{% block body %}
+{% load static %}
+<br>
+<div class="container">
+
+  <header class="section-heading">
+    <h3 class="section-title" style="color: #9A1750;">All Playlists</h3>
+  </header><!-- sect-heading -->
+  <hr style="border-top: 2px solid #5D001E;">
+  <!-- Playlist list -->
+  <div class="row">
+    {% if playlists %}
+    {% for playlist in playlists %}
+    <div class="col-md-3 mb-4">
+      <div class="thumbnail" style="border: 1px solid #E3E2DF; border-radius: 8px; overflow: hidden;">
+        <a href="{% url 'playlist_songs' playlist.playlist_name %}">
+          <img src="{% static 'musicapp/images/bg.jpg' %}" class="img-responsive" style="width: 100%; height: 200px; object-fit: cover;">
+        </a>
+        <center>
+          <h4 style="color: #5D001E; margin-top: 10px; font-size: 16px;">{{ playlist.playlist_name }}</h4>
+        </center>
+      </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p style="color: #5D001E; text-align: center;">There isn't any playlist! First create a new playlist.</p>
+    {% endif %}
+  </div>
+
+</div>
+
+{% endblock body %}
